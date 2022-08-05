@@ -12,6 +12,7 @@
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
 
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -34,6 +35,12 @@
         </dependency>
 
         <!-- 以上三个依赖若用不到需要注释掉 -->
+
+        <dependency>
+            <groupId>com.gzuniversity</groupId>
+            <artifactId>service_base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
