@@ -1,4 +1,4 @@
-package com.gzhu.commonutils;
+package com.gzuniversity.commonutils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class JwtUtils {
     public static final long EXPIRE=1000*60*60*24;//token过期时间
-    public static final String APP_SECRET="";//签名密钥
+    public static final String APP_SECRET="123456";//签名密钥
     //用JWT生成加密字符串
     public static String getJwtToken(String id,String nickname){
         String JwtToken= Jwts.builder()
