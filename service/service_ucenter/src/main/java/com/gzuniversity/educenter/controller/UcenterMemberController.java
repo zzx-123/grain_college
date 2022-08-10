@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2022-08-08
  */
 @RestController
-@RequestMapping("/educenter/ucenterMember")
+@RequestMapping("/ucenterservice/ucenterMember")
 public class UcenterMemberController {
     @Autowired
     private UcenterMemberService ucenterMemberService;
@@ -44,6 +44,12 @@ public class UcenterMemberController {
         String memberId = JwtUtils.getUserIdByJwtToken(request);
         UcenterMember ucenterMember = ucenterMemberService.getById(memberId);
         return R.ok().data("userInfo",ucenterMember);
+    }
+
+
+    @GetMapping("test")
+    public R testNacos(){
+        return R.ok().data("ok",1);
     }
 }
 

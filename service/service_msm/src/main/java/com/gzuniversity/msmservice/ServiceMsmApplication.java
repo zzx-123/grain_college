@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan("com.gzuniversity")
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-//@EnableFeignClients    //服务调用
+@EnableFeignClients    //注册服务调用
 public class ServiceMsmApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceMsmApplication.class,args);
