@@ -1,8 +1,11 @@
 package com.gzuniversity.eduservice.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzuniversity.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gzuniversity.eduservice.entity.vo.CourseInfoVo;
+import com.gzuniversity.eduservice.entity.vo.CoursePublicVo;
+import com.gzuniversity.eduservice.entity.vo.CourseQueryVo;
 
 /**
  * <p>
@@ -14,5 +17,17 @@ import com.gzuniversity.eduservice.entity.vo.CourseInfoVo;
  */
 public interface EduCourseService extends IService<EduCourse> {
 
-    void saveCourseInfo(CourseInfoVo courseInfoVo);
+    String saveCourseInfo(CourseInfoVo courseInfoVo);
+
+    CourseInfoVo getCourseInfo(String course_id);
+
+
+    //修改课程信息
+    void updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    CoursePublicVo getCoursePublicInfo(String id);
+
+    boolean removeCourse(String courseId);
+
+    void pageQuery(Page<EduCourse> coursePage, CourseQueryVo courseQueryVo);
 }

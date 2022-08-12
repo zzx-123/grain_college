@@ -8,11 +8,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 
-/*@EnableFeignClients    //服务调用
-@EnableDiscoveryClient  //nacos注册*/
+@EnableFeignClients    //服务调用
+@EnableDiscoveryClient  //nacos注册
 @ComponentScan("com.gzuniversity")
 @MapperScan("com.gzuniversity.eduservice.mapper")
-@SpringBootApplication
+@SpringBootApplication()
 public class EduApplication {
     public static void main(String[] args) {
         SpringApplication.run(EduApplication.class, args);
