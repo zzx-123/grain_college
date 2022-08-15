@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>
  * 课程视频 服务实现类
@@ -25,10 +28,30 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
     @Autowired
     private VodClient vodClient;
 
-    //TODO 还要删除小节里面的视频
+    //TODO 测试
     @Override
     public boolean removeVideoByCourseId(String courseId) {
-        QueryWrapper<EduVideo> eduVideoQueryWrapper = new QueryWrapper<>();
+        //根据课程id查出所有视频的id
+        QueryWrapper<EduVideo>eduVideoQueryWrapper=new QueryWrapper<>();
+        eduVideoQueryWrapper.eq("course_id",courseId);
+        eduVideoQueryWrapper.select("video_source_id");
+        List<EduVideo> eduVideoList = baseMapper.selectList(eduVideoQueryWrapper);
+
+        List<String>videoIds=new ArrayList<>();
+        for(EduVideo eduVideo:eduVideoList){
+            String videoSourceId=eduVideo.getVideoSourceId();
+            if(!StringUtils.isEmpty(videoSourceId)){
+                videoIds.add(videoSourceId);
+            }
+
+        }
+        if(videoIds.size()>0){
+            //根据多个视频id删除多个视频
+            vodClient.deleteVideoList(videoIds);
+        }
+
+
+        eduVideoQueryWrapper = new QueryWrapper<>();
         eduVideoQueryWrapper.eq("course_id", courseId);
         int delete = baseMapper.delete(eduVideoQueryWrapper);
         return delete == 1;

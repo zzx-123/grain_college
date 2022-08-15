@@ -5,6 +5,7 @@ import com.gzuniversity.commonutils.R;
 import com.gzuniversity.eduservice.client.VodClient;
 import com.gzuniversity.eduservice.entity.EduVideo;
 import com.gzuniversity.eduservice.service.EduVideoService;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,9 +34,10 @@ public class EduVideoController {
         return save?R.ok():R.error().message("删除失败");
     }
     //删除小节--videoId是小节id不是小节视频的id
-    //TODO 后面这个方法需要完善，删除小节时，同时把里面的视频删除
     @DeleteMapping("{videoId}")
-    public R deleteVideo(@PathVariable String videoId){
+    public R deleteVideo(
+            @ApiParam(name = "videoId", value = "小节id", required = true)
+            @PathVariable String videoId){
         boolean flag=eduVideoService.deleteVideoById(videoId);
         return flag?R.ok():R.error().message("删除失败");
     }
