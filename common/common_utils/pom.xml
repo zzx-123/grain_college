@@ -9,12 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service_base</artifactId>
+    <artifactId>common_utils</artifactId>
+
+    <properties>
+    </properties>
     <dependencies>
         <dependency>
-            <groupId>com.gzuniversity</groupId>
-            <artifactId>common_utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
         </dependency>
     </dependencies>
+
 </project>

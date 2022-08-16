@@ -11,6 +11,12 @@
 
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>service_msm</module>
+        <module>service_ucenter</module>
+        <module>service_edu</module>
+        <module>service_vod</module>
+    </modules>
 
 
     <dependencies>
@@ -42,6 +48,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.gzuniversity</groupId>
+            <artifactId>common_utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
