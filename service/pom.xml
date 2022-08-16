@@ -25,6 +25,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.gzuniversity</groupId>
+            <artifactId>service_base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
@@ -46,15 +51,9 @@
 
         <!-- 以上三个依赖若用不到需要注释掉 -->
 
-
         <dependency>
             <groupId>com.gzuniversity</groupId>
             <artifactId>service_base</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gzuniversity</groupId>
-            <artifactId>common_utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -126,4 +125,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>
