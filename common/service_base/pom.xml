@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service_base</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>com.gzuniversity</groupId>
@@ -18,6 +17,4 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-
 </project>

@@ -11,7 +11,12 @@
 
     <artifactId>service_edu</artifactId>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
     <build>
+        <!--在项目构建时把java目录中的*.xml文件也进行打包-->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
