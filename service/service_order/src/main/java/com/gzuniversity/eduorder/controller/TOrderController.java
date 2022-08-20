@@ -1,9 +1,13 @@
 package com.gzuniversity.eduorder.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.gzuniversity.commonutils.JwtUtils;
+import com.gzuniversity.commonutils.R;
+import com.gzuniversity.eduorder.service.TOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -15,7 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/eduorder/t-order")
+@CrossOrigin
 public class TOrderController {
+    @Autowired
+    private TOrderService tOrderService;
 
+    @PostMapping("createOrder/{courseId}")
+    public R saveOrder(@PathVariable String courseId, HttpServletRequest request){
+
+        String orderID = tOrderService.createOrders(courseId, JwtUtils.getUserIdByJwtToken(request));
+        return R.ok().data("orderId", orderID);
+    }
 }
 

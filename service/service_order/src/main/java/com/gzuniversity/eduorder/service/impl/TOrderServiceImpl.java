@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TOrderServiceImpl extends ServiceImpl<TOrderMapper, TOrder> implements TOrderService {
 
+    @Override
+    public String createOrders(String courseId, String userIdByJwtToken) {
+        return null;
+    }
 }
