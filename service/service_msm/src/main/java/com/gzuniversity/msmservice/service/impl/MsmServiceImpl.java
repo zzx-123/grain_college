@@ -12,6 +12,7 @@ import com.aliyun.darabonba.env.*;
 import com.aliyun.teautil.*;
 import com.aliyun.darabonbatime.*;
 import com.aliyun.darabonbastring.*;
+import com.gzuniversity.msmservice.util.ConstantAliyunUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +34,7 @@ public class MsmServiceImpl implements MsmService {
     @Override
     public boolean send(Map<String, Object> param) {
         try {
-            com.aliyun.dysmsapi20170525.Client client = createClient("LTAI5tHVrLiuRK6ms2hvt8d7", "zrHELdstFVrPh9KB8k362jCnXdFL7N");
+            com.aliyun.dysmsapi20170525.Client client = createClient(ConstantAliyunUtils.ACCESS_KEY_ID, ConstantAliyunUtils.ACCESS_KEY_SECRET);
             System.out.println(param.get("phone").toString()+"  "+param.get("code"));
             // 1.发送短信
             SendSmsRequest sendReq = new SendSmsRequest()
