@@ -1,5 +1,6 @@
 package com.gzuniversity.eduservice.service.impl;
 
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzuniversity.eduservice.entity.EduCourse;
@@ -7,6 +8,8 @@ import com.gzuniversity.eduservice.entity.EduCourseDescription;
 import com.gzuniversity.eduservice.entity.vo.CourseInfoVo;
 import com.gzuniversity.eduservice.entity.vo.CoursePublicVo;
 import com.gzuniversity.eduservice.entity.vo.CourseQueryVo;
+import com.gzuniversity.eduservice.entity.vo.frontvo.CourseWebVo;
+import com.gzuniversity.eduservice.frontvo.CourseFrontVo;
 import com.gzuniversity.eduservice.mapper.EduChapterMapper;
 import com.gzuniversity.eduservice.mapper.EduCourseDescriptionMapper;
 import com.gzuniversity.eduservice.mapper.EduCourseMapper;
@@ -21,6 +24,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -150,5 +157,54 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         }
         baseMapper.selectPage(coursePage,courseQueryWrapper);
         return;
+    }
+
+    @Override
+    public Map<String, Object> getCourseFrontList(Page<EduCourse> pageParam, CourseFrontVo courseFrontVo) {
+        QueryWrapper<EduCourse> Wrapper = new QueryWrapper<>();
+
+        //判断条件是否为空
+        if (!StringUtils.isEmpty(courseFrontVo.getSubjectParentId())){//一级分类
+            Wrapper.eq("subject_parent_id",courseFrontVo.getSubjectParentId());
+        }
+        if (!StringUtils.isEmpty(courseFrontVo.getSubjectId())){//二级分类
+            Wrapper.eq("subject_id",courseFrontVo.getSubjectId());
+        }
+        if (!StringUtils.isEmpty(courseFrontVo.getBuyCountSort())) {//销量排序
+            Wrapper.orderByDesc("buy_count");
+        }
+        if (!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort())) {//时间排序
+            Wrapper.orderByDesc("gmt_create");
+        }
+        if (!StringUtils.isEmpty(courseFrontVo.getPriceSort())) {//价格排序
+            Wrapper.orderByDesc("price");
+        }
+
+        //封装到page里面
+        baseMapper.selectPage(pageParam, Wrapper);
+
+        long total = pageParam.getTotal();
+        List<EduCourse> records = pageParam.getRecords();
+        long current = pageParam.getCurrent();
+        long size = pageParam.getSize();
+        boolean hasNext = pageParam.hasNext();
+        boolean hasPrevious = pageParam.hasPrevious();
+        long pages = pageParam.getPages();
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+
+        return map;
+    }
+
+    @Override
+    public CourseWebVo getBaseCourseInfo(String courseId) {
+        return baseMapper.getBaseCourseInfo(courseId);
     }
 }

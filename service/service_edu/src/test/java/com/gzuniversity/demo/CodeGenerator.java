@@ -34,10 +34,10 @@ public class CodeGenerator {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/graincollege?serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("807385");//记得该密码
+        dsc.setPassword("root");//记得该密码
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
 
@@ -53,7 +53,7 @@ public class CodeGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_subject","edu_course", "edu_course_description", "edu_chapter","edu_video");
+        strategy.setInclude("edu_comment");
         //strategy.setInclude("edu_subject");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
