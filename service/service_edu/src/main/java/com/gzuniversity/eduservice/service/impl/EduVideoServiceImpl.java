@@ -1,11 +1,14 @@
 package com.gzuniversity.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.gzuniversity.commonutils.R;
 import com.gzuniversity.eduservice.client.VodClient;
 import com.gzuniversity.eduservice.entity.EduVideo;
 import com.gzuniversity.eduservice.mapper.EduVideoMapper;
 import com.gzuniversity.eduservice.service.EduVideoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gzuniversity.servicebase.handler.GuliException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -43,14 +46,15 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
             if(!StringUtils.isEmpty(videoSourceId)){
                 videoIds.add(videoSourceId);
             }
-
         }
         if(videoIds.size()>0){
             //根据多个视频id删除多个视频
-            vodClient.deleteVideoList(videoIds);
+            R result = vodClient.deleteVideoList(videoIds);
+            if(result.getCode()==20001) {//触法熔断器，跨服务调用出错
+                System.out.println(result.getMessage());
+                throw new GuliException(20001, result.getMessage());
+            }
         }
-
-
         eduVideoQueryWrapper = new QueryWrapper<>();
         eduVideoQueryWrapper.eq("course_id", courseId);
         int delete = baseMapper.delete(eduVideoQueryWrapper);
@@ -64,7 +68,12 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         String videoSourceId = eduVideo.getVideoSourceId();
         //删除视频资源
         if (!StringUtils.isEmpty(videoSourceId)) {
-            vodClient.removeVideo(videoSourceId);
+
+            R result = vodClient.removeVideo(videoSourceId);
+            if(result.getCode()==20001) {//触法熔断器，跨服务调用出错
+                System.out.println(result.getMessage());
+                throw new GuliException(20001, result.getMessage());
+            }
         }
         //删除小节
         int result = baseMapper.deleteById(videoId);

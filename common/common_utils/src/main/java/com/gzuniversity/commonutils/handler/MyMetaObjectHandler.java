@@ -1,11 +1,10 @@
 package com.gzuniversity.commonutils.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.sun.istack.internal.logging.Logger;
+
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
-import sun.rmi.runtime.Log;
-import org.slf4j.LoggerFactory;
+
 import java.util.Date;
 
 @Component
