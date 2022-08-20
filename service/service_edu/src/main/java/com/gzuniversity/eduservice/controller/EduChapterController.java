@@ -23,6 +23,7 @@ import java.util.List;
 //TODO 测试
 @RestController
 @RequestMapping("/eduservice/chapter")
+@CrossOrigin
 public class EduChapterController {
     @Autowired
     private EduChapterService eduChapterService;

@@ -25,6 +25,7 @@ import java.util.List;
 // TODO 测试
 @RestController
 @RequestMapping("/eduservice/course")
+@CrossOrigin
 public class EduCourseController {
 
     @Autowired
