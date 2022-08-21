@@ -3,9 +3,11 @@ package com.gzuniversity.educenter.controller;
 
 import com.gzuniversity.commonutils.JwtUtils;
 import com.gzuniversity.commonutils.R;
+import com.gzuniversity.commonutils.UcenterMemberOrder;
 import com.gzuniversity.educenter.entity.UcenterMember;
 import com.gzuniversity.educenter.entity.vo.RegisterVo;
 import com.gzuniversity.educenter.service.UcenterMemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/ucenterservice/ucenterMember")
+@CrossOrigin
 public class UcenterMemberController {
     @Autowired
     private UcenterMemberService ucenterMemberService;
@@ -46,6 +49,15 @@ public class UcenterMemberController {
         return R.ok().data("userInfo",ucenterMember);
     }
 
+    //根据用户id获取客户信息
+    @GetMapping("getUserInfoOrder/{memberId}")
+    public UcenterMemberOrder getUcenterById(@PathVariable String memberId){
+        UcenterMember ucenterMember = ucenterMemberService.getById(memberId);
+        //把UcenterMember复制为UcenterMemberOrder对象
+        UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
+        BeanUtils.copyProperties(ucenterMember,ucenterMemberOrder);
+        return ucenterMemberOrder;
+    }
 
     @GetMapping("test")
     public R testNacos(){

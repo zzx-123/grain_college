@@ -45,7 +45,7 @@ public class EduCourseController {
     }
     //TODO 测试
     //条件查询分页查询
-    @GetMapping("pageCourseQuery/{current}/{limit}")
+    @PostMapping("pageCourseQuery/{current}/{limit}")
     public R pageCourseQuery(@PathVariable long current, @PathVariable long limit
             ,@RequestBody(required = false) CourseQueryVo courseQueryVo){
         //创建page对象

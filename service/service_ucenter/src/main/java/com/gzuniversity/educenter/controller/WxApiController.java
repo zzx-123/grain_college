@@ -152,7 +152,7 @@ public class WxApiController {
 
 
             //判断该微信信息是否注册过
-            UcenterMember menber = ucenterMemberService.getMenberByOperid(openid);
+            UcenterMemberOrder menber = ucenterMemberService.getMenberByOperid(openid);
             if (menber == null){
                 //3\拿着access_token和openid，再去请求微信提供的固定地址，获取扫描人信息
                 //访问微信的资源服务器，获取用户信息
@@ -171,7 +171,7 @@ public class WxApiController {
                 String headimgurl = (String)userInfoMap.get("headimgurl");//头像
 
                 //把微信信息注册到数据库中
-                menber = new UcenterMember();
+                menber = new UcenterMemberOrder();
                 menber.setNickname(nickname);
                 menber.setOpenid(openid);
                 menber.setAvatar(headimgurl);
