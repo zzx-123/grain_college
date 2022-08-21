@@ -8,7 +8,7 @@ import com.gzuniversity.eduservice.entity.vo.CourseInfoVo;
 import com.gzuniversity.eduservice.entity.vo.CoursePublicVo;
 import com.gzuniversity.eduservice.entity.vo.CourseQueryVo;
 import com.gzuniversity.eduservice.entity.vo.frontvo.CourseWebVo;
-import com.gzuniversity.eduservice.frontvo.CourseFrontVo;
+import com.gzuniversity.eduservice.entity.frontvo.CourseFrontVo;
 
 import java.util.Map;
 

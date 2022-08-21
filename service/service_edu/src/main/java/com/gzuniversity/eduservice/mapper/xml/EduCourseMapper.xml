@@ -14,7 +14,7 @@
         WHERE ec.id =#{courseId}
     </select>
 
-    <select id="getBaseCourseInfo" resultType="com.atguigu.eduservice.entity.frontvo.CourseWebVo">
+    <select id="getBaseCourseInfo" resultType="com.gzuniversity.eduservice.entity.frontvo.CourseFrontVo">
         SELECT ec.id,ec.title,ec.price,ec.lesson_num AS lessonNum,ec.cover,
                ec.buy_count AS buyCount,ec.view_count AS viewCount,
                ecd.description,

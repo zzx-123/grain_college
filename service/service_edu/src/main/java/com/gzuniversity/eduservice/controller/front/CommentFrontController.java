@@ -5,15 +5,12 @@ package com.gzuniversity.eduservice.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzuniversity.commonutils.JwtUtils;
 import com.gzuniversity.commonutils.R;
-import com.gzuniversity.commonutils.UcenterMember;
+import com.gzuniversity.commonutils.UcenterMemberOrder;
 import com.gzuniversity.eduservice.client.UcenterClient;
 import com.gzuniversity.eduservice.entity.EduComment;
 import com.gzuniversity.eduservice.service.EduCommentService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +38,7 @@ public class CommentFrontController {
             return R.error().message("请登录");
         }
         eduComment.setMemberId(memberId);
-        UcenterMember member = ucenterClient.getUcenterById(memberId);
+        UcenterMemberOrder member = ucenterClient.getUcenterById(memberId);
         eduComment.setNickname(member.getNickname());
         eduComment.setAvatar(member.getAvatar());
 //        BeanUtils.copyProperties(member,eduComment);

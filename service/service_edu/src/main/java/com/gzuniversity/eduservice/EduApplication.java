@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients    //服务调用
 @EnableDiscoveryClient  //nacos注册
 @ComponentScan("com.gzuniversity")
-@MapperScan("com.gzuniversity.eduservice.mapper")
+//@MapperScan("com.gzuniversity.eduservice.mapper")
 @SpringBootApplication()
 public class EduApplication {
     public static void main(String[] args) {

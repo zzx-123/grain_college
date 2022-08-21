@@ -5,7 +5,7 @@ import com.gzuniversity.commonutils.R;
 import com.gzuniversity.eduservice.entity.EduCourse;
 import com.gzuniversity.eduservice.entity.vo.chater.ChapterVo;
 import com.gzuniversity.eduservice.entity.vo.frontvo.CourseWebVo;
-import com.gzuniversity.eduservice.frontvo.CourseFrontVo;
+import com.gzuniversity.eduservice.entity.frontvo.CourseFrontVo;
 import com.gzuniversity.eduservice.service.EduChapterService;
 import com.gzuniversity.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
