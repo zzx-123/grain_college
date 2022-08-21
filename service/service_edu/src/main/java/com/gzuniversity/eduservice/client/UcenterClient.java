@@ -1,6 +1,6 @@
 package com.gzuniversity.eduservice.client;
 
-import com.gzuniversity.commonutils.UcenterMember;
+import com.gzuniversity.commonutils.UcenterMemberOrder;
 import com.gzuniversity.eduservice.client.impl.UcenterClientImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface UcenterClient {
 
     @GetMapping("/educenter/member/getUcenter/{memberId}")
-    public UcenterMember getUcenterById(@PathVariable("memberId") String memberId);
+    public UcenterMemberOrder getUcenterById(@PathVariable("memberId") String memberId);
 }
